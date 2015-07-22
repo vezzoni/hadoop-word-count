@@ -1,0 +1,12 @@
+target/
+
+faces*
+
+.settings/
+project/
+
+dependency-reduced-pom.xml
+nb*.xml
+
+.DS_Store
+
