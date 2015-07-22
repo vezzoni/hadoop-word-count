@@ -1,4 +1,4 @@
-Hadoop Word Count
+# Hadoop Word Count
 This lab shows how to setup the Hadoop Word Count project which works like a HelloWorld project. 
 You should have the Apache Hadoop installed [1] before execute this project.
 
