@@ -31,6 +31,21 @@ public class WordCount {
         }
     }
 
+    public static class Combine extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
+
+        @Override
+        public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
+            
+            System.out.println("combining...");
+            
+            int sum = 0;
+            while (values.hasNext()) {
+                sum += values.next().get();
+            }
+            output.collect(key, new IntWritable(sum));
+        }
+    }
+
     public static class Reduce extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
 
         @Override
@@ -77,7 +92,7 @@ public class WordCount {
         conf.setOutputValueClass(IntWritable.class);
 
         conf.setMapperClass(Map.class);
-        conf.setCombinerClass(Reduce.class);
+        conf.setCombinerClass(Combine.class);
         conf.setReducerClass(Reduce.class);
 
         conf.setInputFormat(TextInputFormat.class);
